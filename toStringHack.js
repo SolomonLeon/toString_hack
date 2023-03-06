@@ -7,7 +7,7 @@
     Usage:
     target = disguisef(target, function(){...})
 
-    example:
+    Example:
     let's suppose you want to change the alert function to `()=>{return 0}`.
 
     ```
@@ -18,6 +18,22 @@
     returns 'function alert() { [native code] }' and `alert.toString.toString()`
     returns 'function toString() { [native code] }'. No changes can be detected 
     via toString().
+
+    More example:
+
+    ```javascript
+    var f = () =>{return 123}
+    f.toString() // '() =>{return 123}'
+
+    f = disguisef(f,()=>{return 12345})
+
+    f() // 12345
+    f.toString() //'() =>{return 123}'
+    f.toLocalString() // '() =>{return 123}'
+
+    ```
+
+
     ***/
     var tmp;
     var toStringProxyFuction = function() {
